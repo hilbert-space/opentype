@@ -3,9 +3,10 @@
   %head
     %meta{ charset: 'utf-8' }
     %title Type Works
-    %link{ href: "/application.css?#{ timestamp }", media: 'all', rel: 'stylesheet' }
+    %link{ href: "/application.css?#{ stamp }", media: 'all', rel: 'stylesheet' }
   %body
     %article
       %header
-        %h1 Type Works
-    %script{ src: "/application.js?#{ timestamp }" }
+        %h1
+          Type Works
+          %a.bookmark{ href: bookmark_href, title: 'Drop me to the bookmark panel!', onclick: 'return false;'} &para;
