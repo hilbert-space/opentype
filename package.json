@@ -1,0 +1,19 @@
+{
+  "name": "type-works",
+  "version": "0.0.1",
+  "description": "Type does work",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IvanUkhov/type-works"
+  },
+  "author": "Ivan Ukhov <ivan.ukhov@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-coffee": "~0.10.1",
+    "grunt-contrib-sass": "~0.7.3"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}
