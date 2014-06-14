@@ -1,14 +1,19 @@
+require 'haml'
+require 'uglifier'
 require 'sprockets'
+
+require_relative 'app/helpers/common_helper'
+
+Haml::Helpers.include(CommonHelper)
+Tilt::CoffeeScriptTemplate.default_bare = true
+Sprockets.register_engine('.haml', Tilt::HamlTemplate)
 
 class Application
   def initialize
-    Sprockets.register_engine('.haml', Tilt::HamlTemplate)
     @sprockets = Sprockets::Environment.new
     @sprockets.append_path('app/assets/javascripts')
     @sprockets.append_path('app/assets/stylesheets')
     @sprockets.append_path('app/views/layouts')
-    @sprockets.js_compressor = :uglify
-    @sprockets.css_compressor = :scss
   end
 
   def call(env)
