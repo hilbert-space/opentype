@@ -3,22 +3,15 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON('package.json')
 
     app:
+      views: 'app/views'
+      layouts: '<%= app.views %>/layouts'
+
       assets: 'app/assets'
       stylesheets: '<%= app.assets %>/stylesheets'
       javascripts: '<%= app.assets %>/javascripts'
 
-    sass:
-      dev:
-        files: [
-          expand: true
-          cwd: '<%= app.stylesheets %>'
-          src: [ '*.scss' ]
-          dest: 'public'
-          ext: '.css'
-        ]
-
     coffee:
-      dev:
+      dist:
         files: [
           expand: true
           cwd: '<%= app.javascripts %>'
@@ -27,17 +20,38 @@ module.exports = (grunt) ->
           ext: '.js'
         ]
 
+    haml:
+      dist:
+        files:
+          'public/index.html': '<%= app.layouts %>/application.html.haml'
+
+    sass:
+      dist:
+        files: [
+          expand: true
+          cwd: '<%= app.stylesheets %>'
+          src: [ '*.scss' ]
+          dest: 'public'
+          ext: '.css'
+        ]
+
     watch:
       coffee:
         files: '<%= app.javascripts %>/*.coffee'
-        tasks: [ 'coffee:dev' ]
+        tasks: [ 'coffee:dist' ]
+
+      haml:
+        files: '<%= app.layouts %>/*.haml'
+        tasks: [ 'haml:dist' ]
 
       sass:
         files: '<%= app.stylesheets %>/*.scss'
-        tasks: [ 'sass:dev' ]
+        tasks: [ 'sass:dist' ]
 
   grunt.loadNpmTasks('grunt-contrib-coffee')
+  grunt.loadNpmTasks('grunt-contrib-haml')
   grunt.loadNpmTasks('grunt-contrib-sass')
   grunt.loadNpmTasks('grunt-contrib-watch')
 
-  grunt.registerTask('default', [ 'sass', 'coffee', 'watch' ])
+  grunt.registerTask('build', [ 'coffee', 'haml', 'sass' ])
+  grunt.registerTask('default', [ 'build', 'watch' ])
