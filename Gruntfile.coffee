@@ -38,7 +38,7 @@ module.exports = (grunt) ->
     watch:
       coffee:
         files: '<%= app.javascripts %>/*.coffee'
-        tasks: [ 'coffee:dist' ]
+        tasks: [ 'coffee:dist', 'haml:dist' ]
 
       haml:
         files: '<%= app.layouts %>/*.haml'
@@ -46,7 +46,7 @@ module.exports = (grunt) ->
 
       sass:
         files: '<%= app.stylesheets %>/*.scss'
-        tasks: [ 'sass:dist' ]
+        tasks: [ 'sass:dist', 'haml:dist' ]
 
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-haml')
