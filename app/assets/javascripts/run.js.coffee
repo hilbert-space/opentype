@@ -12,13 +12,12 @@ class TypeWorks
   ]
 
   constructor: () ->
-    @panel = $('<div></div>').attr(id: 'typeworks-panel')
+    @panel = $('<div></div>').attr(id: 'typeworks')
 
     for feature in TypeWorks.features
       $('<a></a>').
-        attr(href: '#', title: feature).
+        attr(href: '#', title: feature, 'data-feature': feature).
         addClass('toggle').
-        data(feature: feature).
         appendTo(@panel)
 
     $('.toggle', @panel).on 'click', (e) =>

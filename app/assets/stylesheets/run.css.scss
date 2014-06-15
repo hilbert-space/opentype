@@ -1,4 +1,4 @@
-#typeworks-panel {
+#typeworks {
   top: 0;
   left: 0;
   position: fixed;
@@ -9,18 +9,58 @@
     width: 20px;
     height: 20px;
     margin: 10px;
-    background: #ccc;
 
-    &:hover {
-      background: #ddd;
+    opacity: 0.5;
+
+    &:hover, &.active {
+      opacity: 1;
     }
 
-    &.active {
-      background: #9c3;
+    &[data-feature=kern] {
+      background: #1fbee8;
+    }
 
-      &:hover {
-        background: #ad4;
-      }
+    &[data-feature=liga],
+    &[data-feature=dlig],
+    &[data-feature=hlig],
+    &[data-feature=clig] {
+      background: #83e779;
+    }
+
+    &[data-feature=smcp],
+    &[data-feature=c2sc] {
+      background: #f1f271;
+    }
+
+    &[data-feature=lnum],
+    &[data-feature=onum] {
+      background: #ffe678;
+    }
+
+    &[data-feature=pnum],
+    &[data-feature=tnum] {
+      background: #ffaf97;
+    }
+
+    &[data-feature=frac],
+    &[data-feature=afrc] {
+      background: #ff8dbe;
+    }
+
+    &[data-feature=zero],
+    &[data-feature=nalt] {
+      background: #ff81da;
+    }
+
+    &[data-feature=swsh],
+    &[data-feature=calt],
+    &[data-feature=hist],
+    &[data-feature=salt] {
+      background: #9f86de;
+    }
+
+    &[data-feature^=ss] {
+      background: #9e9893;
     }
   }
 }
