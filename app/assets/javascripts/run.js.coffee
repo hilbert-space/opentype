@@ -103,10 +103,6 @@ class TypeWorks
       '-webkit-font-feature-settings': settings
       'font-feature-settings': settings
 
-    settings = @combineAlternative()
-    element.css
-      '-moz-font-feature-settings': settings
-
     return
 
   combine: () ->
@@ -117,15 +113,6 @@ class TypeWorks
       line += '"' + feature + '" 1'
 
     line
-
-  combineAlternative: () ->
-    line = ''
-
-    for feature in @activeFeatures
-      line += ',' if line.length
-      line += feature + '=1'
-
-    '"' + line + '"'
 
 window.initializeTypeWorks = ->
   window.typeWorks = new TypeWorks()

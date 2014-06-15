@@ -8,16 +8,28 @@
   font-weight: inherit;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 a, a:hover, a:visited {
   color: #1fbee8;
-  text-decoration: none;
+}
+
+p {
+  line-height: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 html {
   font-size: 22px;
   font-style: normal;
   font-weight: normal;
-  font-family: 'Minion Pro', serif;
+  font-family: 'Minion Pro', 'Adobe Garamond Pro', Constantia, Calibri, serif;
 }
 
 article {
@@ -28,23 +40,34 @@ article {
     margin-top: 1rem;
     margin-bottom: 2rem;
 
-    font-size: 5rem;
-    font-weight: 100;
-    text-align: center;
+    h1 {
+      font-size: 5rem;
+      font-weight: 100;
+      text-align: center;
 
-    a:hover {
-      cursor: alias;
+      margin-bottom: 2rem;
+
+      a:hover {
+        cursor: alias;
+        text-decoration: none;
+      }
+    }
+
+    ol {
+      margin-left: 2rem;
+      list-style-position: outside;
+      line-height: 1.5rem;
+
+      li:last-child {
+        margin-top: 1rem;
+        list-style-type: none;
+      }
     }
   }
 
-  section {
-    p {
-      line-height: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
+  footer {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
   }
 }
