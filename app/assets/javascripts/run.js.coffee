@@ -1,22 +1,47 @@
 class TypeWorks
+  # Reference:
+  # http://www.microsoft.com/typography/otspec/featuretags.htm
   @features = [
-    'kern',
-    'liga', 'dlig', 'hlig', 'clig',
-    'smcp', 'c2sc',
-    'lnum', 'onum',
-    'pnum', 'tnum',
-    'frac', 'afrc',
-    'zero', 'nalt',
-    'swsh', 'calt', 'hist', 'salt',
-    'ss01', 'ss02', 'ss03', 'ss04', 'ss05'
+    { slug: 'kern', title: 'Kerning' },
+
+    { slug: 'liga', title: 'Standard ligatures' },
+    { slug: 'dlig', title: 'Discretionary ligatures' },
+    { slug: 'hlig', title: 'Historical ligatures' },
+    { slug: 'clig', title: 'Contextual ligatures' },
+
+    { slug: 'smcp', title: 'Small capitals' },
+    { slug: 'c2sc', title: 'Small capitals from capitals' },
+
+    { slug: 'lnum', title: 'Lining figures' },
+    { slug: 'onum', title: 'Old-style figures' },
+
+    { slug: 'pnum', title: 'Proportional figures' },
+    { slug: 'tnum', title: 'Tabular figures' },
+
+    { slug: 'frac', title: 'Fractions' },
+    { slug: 'afrc', title: 'Alternative fractions' },
+
+    { slug: 'zero', title: 'Slashed zero' },
+    { slug: 'nalt', title: 'Alternate annotation forms' },
+
+    { slug: 'swsh', title: 'Swash' },
+    { slug: 'calt', title: 'Contextual alternates' },
+    { slug: 'hist', title: 'Historical forms' },
+    { slug: 'salt', title: 'Stylistic alternates' },
+
+    { slug: 'ss01', title: 'Stylistic set 1' },
+    { slug: 'ss02', title: 'Stylistic set 2' },
+    { slug: 'ss03', title: 'Stylistic set 3' },
+    { slug: 'ss04', title: 'Stylistic set 4' },
+    { slug: 'ss05', title: 'Stylistic set 5' }
   ]
 
   constructor: () ->
     @panel = $('<div></div>').attr(id: 'typeworks')
 
     for feature in TypeWorks.features
-      $('<a></a>').
-        attr(href: '#', title: feature, 'data-feature': feature).
+      $("<a><span>#{ feature.title }</span></a>").
+        attr(href: '#', title: feature.title, 'data-feature': feature.slug).
         addClass('toggle').
         appendTo(@panel)
 

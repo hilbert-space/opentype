@@ -6,9 +6,29 @@
 
   .toggle {
     display: block;
+
     width: 20px;
     height: 20px;
     margin: 10px;
+
+    font-size: 12px;
+    font-family: Monaco, 'Courier New', Courier, 'Lucida Console', monospace;
+    line-height: 20px;
+
+    &, &:hover, &:visited {
+      color: black;
+      text-decoration: none;
+    }
+
+    span {
+      display: none;
+      white-space: nowrap;
+      margin-left: 30px;
+    }
+
+    &:hover span {
+      display: inline;
+    }
 
     opacity: 0.5;
 
