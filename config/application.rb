@@ -2,7 +2,7 @@ require 'haml'
 require 'uglifier'
 require 'sprockets'
 
-require File.expand_path('../../app/helpers/common_helper', __FILE__)
+require File.expand_path('../../app/helpers/application_helper', __FILE__)
 
 Sprockets.register_engine('.haml', Tilt::HamlTemplate)
 
@@ -28,7 +28,7 @@ class Application
     pipeline.append_path('app/views/layouts')
 
     pipeline.context_class.class_eval do
-      include CommonHelper
+      include ApplicationHelper
 
       define_method(:server_address) do
         env['HTTP_HOST']
