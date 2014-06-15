@@ -12,14 +12,14 @@ class TypeWorks
     { slug: 'smcp', title: 'Small capitals' },
     { slug: 'c2sc', title: 'Small capitals from capitals' },
 
-    { slug: 'lnum', title: 'Lining figures' },
-    { slug: 'onum', title: 'Old-style figures' },
+    { slug: 'lnum', title: 'Lining figures', exclude: [ 'onum' ] },
+    { slug: 'onum', title: 'Old-style figures', exclude: [ 'lnum' ] },
 
-    { slug: 'pnum', title: 'Proportional figures' },
-    { slug: 'tnum', title: 'Tabular figures' },
+    { slug: 'pnum', title: 'Proportional figures', exclude: [ 'tnum' ] },
+    { slug: 'tnum', title: 'Tabular figures', exclude: [ 'pnum' ] },
 
-    { slug: 'frac', title: 'Fractions' },
-    { slug: 'afrc', title: 'Alternative fractions' },
+    { slug: 'frac', title: 'Fractions', exclude: [ 'afrc' ] },
+    { slug: 'afrc', title: 'Alternative fractions', exclude: [ 'frac' ] },
 
     { slug: 'zero', title: 'Slashed zero' },
     { slug: 'nalt', title: 'Alternate annotation forms' },
@@ -39,7 +39,11 @@ class TypeWorks
   constructor: () ->
     @panel = $('<div></div>').attr(id: 'typeworks')
 
+    @features = {}
+
     for feature in TypeWorks.features
+      @features[feature.slug] = feature
+
       $("<a><span>#{ feature.title }</span></a>").
         attr(href: '#', title: feature.title, 'data-feature': feature.slug).
         addClass('toggle').
@@ -68,9 +72,23 @@ class TypeWorks
     if index > -1
       @activeFeatures.splice(index, 1)
     else
-      @activeFeatures.push(feature)
+      @activate(feature)
 
     @update()
+
+    return
+
+  activate: (feature) ->
+    @activeFeatures.push(feature)
+
+    return unless @features[feature].exclude
+
+    for another in @features[feature].exclude
+      index = @activeFeatures.indexOf(another)
+      continue unless index > -1
+
+      @activeFeatures.splice(index, 1)
+      $(".toggle[data-feature=#{ another }]", @panel).removeClass('active')
 
     return
 
