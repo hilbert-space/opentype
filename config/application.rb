@@ -8,17 +8,23 @@ Sprockets.register_engine('.haml', Tilt::HamlTemplate)
 
 class Application
   def call(env)
-    pipeline = build_pipeline(env)
-
     case env['PATH_INFO']
+    when /^.+(png|svg)$/
+      browser.call(env)
     when /^.+(js|css)$/
+      pipeline = build_pipeline(env)
       pipeline.call(env)
     else
+      pipeline = build_pipeline(env)
       [ 200, {}, [ pipeline['application.html'].to_s ] ]
     end
   end
 
   private
+
+  def browser
+    @browser ||= Rack::Directory.new('public')
+  end
 
   def build_pipeline(env)
     pipeline = Sprockets::Environment.new
