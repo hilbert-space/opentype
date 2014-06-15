@@ -14,6 +14,11 @@ module ApplicationHelper
   def bookmark_js
     <<-CODE
 (function(document) {
+  if (window.toggleTypeWorks) {
+    window.toggleTypeWorks();
+    return;
+  }
+
   var element = document.createElement('script');
   element.setAttribute('type', 'text/javascript');
   element.setAttribute('src', '#{ run_url(:js) }?' + #{ stamp_js });

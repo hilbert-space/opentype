@@ -20,13 +20,23 @@ class TypeWorks
         addClass('toggle').
         appendTo(@panel)
 
-    $('.toggle', @panel).on 'click', (e) =>
+    $('.toggle', @panel).click (e) =>
       element = $(e.target)
       @toggle(element.data('feature'))
       element.toggleClass('active')
+      false
 
     @panel.appendTo(document.body)
     @activeFeatures = []
+
+  destroy: () ->
+    @activeFeatures = []
+    @update()
+
+    @panel.remove()
+    delete @panel
+
+    return
 
   toggle: (feature) ->
     index = @activeFeatures.indexOf(feature)
@@ -35,13 +45,12 @@ class TypeWorks
     else
       @activeFeatures.push(feature)
 
-    @update('body')
+    @update()
 
     return
 
-  update: (selector) ->
+  update: (selector = 'body') ->
     element = $(selector)
-    return unless element.length
 
     settings = @combine()
     element.css
@@ -75,26 +84,36 @@ class TypeWorks
 
     '"' + line + '"'
 
-
-initialize = ->
-  return if window.typeWorks
+window.initializeTypeWorks = ->
   window.typeWorks = new TypeWorks()
   return
 
+window.deinitializeTypeWorks = ->
+  window.typeWorks.destroy()
+  delete window.typeWorks
+  return
+
+window.toggleTypeWorks = ->
+  if window.typeWorks
+    window.deinitializeTypeWorks()
+  else
+    window.initializeTypeWorks()
+  return
+
 if window.jQuery
-  initialize()
+  window.initializeTypeWorks()
 else
   script = document.createElement('script')
-  script.setAttribute('src', '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-  document.body.appendChild(script)
 
   if script.readyState
     script.onreadystatechange = ->
       return unless @readyState == 'complete' || @readyState == 'loaded'
-      initialize()
+      window.initializeTypeWorks()
       return
-
   else
     script.onload = ->
-      initialize()
+      window.initializeTypeWorks()
       return
+
+  script.setAttribute('src', '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+  document.body.appendChild(script)
