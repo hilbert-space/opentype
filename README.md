@@ -1,5 +1,5 @@
 # Type Works
-Type does work.
+Type does work. See [type.works](http://type.works).
 
 ## Contributing
 1. [Fork](https://help.github.com/articles/fork-a-repo) this repository.
