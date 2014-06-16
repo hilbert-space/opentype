@@ -4,6 +4,7 @@ require 'sprockets'
 
 require File.expand_path('../../app/helpers/application_helper', __FILE__)
 
+Haml::Options.defaults[:ugly] = true if ENV['production']
 Sprockets.register_engine('.haml', Tilt::HamlTemplate)
 
 class Application
@@ -32,6 +33,11 @@ class Application
     pipeline.append_path('app/assets/javascripts')
     pipeline.append_path('app/assets/stylesheets')
     pipeline.append_path('app/views/layouts')
+
+    if ENV['production']
+      pipeline.js_compressor = :uglify
+      pipeline.css_compressor = :scss
+    end
 
     pipeline.context_class.class_eval do
       include ApplicationHelper
