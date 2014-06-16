@@ -33,7 +33,7 @@ html {
 }
 
 article {
-  width: 35rem;
+  width: 36rem;
   margin: 0 auto;
 
   header {
@@ -41,8 +41,7 @@ article {
     margin-bottom: 2rem;
 
     h1 {
-      font-size: 5rem;
-      font-weight: 100;
+      font-size: 4rem;
       text-align: center;
 
       margin-bottom: 2rem;
@@ -63,6 +62,10 @@ article {
         list-style-type: none;
       }
     }
+  }
+
+  section p em {
+    font-style: italic;
   }
 
   footer {

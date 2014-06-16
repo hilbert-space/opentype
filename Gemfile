@@ -5,6 +5,7 @@ group :development do
 
   gem 'coffee-script', '~> 2.2.0'
   gem 'haml', '~> 4.0.5'
+  gem 'redcarpet', '~> 3.1.2'
   gem 'sass', '~> 3.3.8'
   gem 'uglifier', '~> 2.5.1'
 
