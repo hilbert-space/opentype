@@ -17,7 +17,7 @@ class Application
       pipeline.call(env)
     else
       pipeline = build_pipeline(env)
-      [ 200, {}, [ pipeline['application.html'].to_s ] ]
+      [ 200, {}, pipeline['application.html'] ]
     end
   end
 

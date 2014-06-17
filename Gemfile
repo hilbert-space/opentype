@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 group :development do
+  gem 'rake', '~> 10.3.2'
+
   gem 'sprockets', '~> 2.12.1'
 
   gem 'coffee-script', '~> 2.2.0'
