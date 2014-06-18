@@ -19,7 +19,8 @@ namespace :assets do
       '/run.css' => 'run.css',
       '/application.css' => 'application.css'
     }.each do |path, file|
-      _, _, source = application.call('PATH_INFO' => path)
+      env = { 'HTTP_HOST' => 'type.works', 'PATH_INFO' => path }
+      _, _, source = application.call(env)
       File.open(File.join('public', file), 'w') { |f| f.write(source.to_s) }
     end
   end
