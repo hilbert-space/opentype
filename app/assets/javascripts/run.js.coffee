@@ -36,20 +36,22 @@ class TypeWorks
   ]
 
   constructor: () ->
-    @panel = $('<div></div>').attr(id: 'type-works')
+    return unless @$ = window.jQuery
+
+    @panel = @$('<div></div>').attr(id: 'type-works')
 
     @features = {}
 
     for feature in TypeWorks.features
       @features[feature.slug] = feature
 
-      $("<a><span>#{ feature.title }</span></a>").
+      @$("<a><span>#{ feature.title }</span></a>").
         attr(href: '#', title: feature.title, 'data-feature': feature.slug).
         addClass('toggle').
         appendTo(@panel)
 
-    $('.toggle', @panel).click (e) =>
-      element = $(e.target)
+    @$('.toggle', @panel).click (e) =>
+      element = @$(e.target)
       @toggle(element.data('feature'))
       element.toggleClass('active')
       false
@@ -87,12 +89,12 @@ class TypeWorks
       continue unless index > -1
 
       @activeFeatures.splice(index, 1)
-      $(".toggle[data-feature=#{ another }]", @panel).removeClass('active')
+      @$(".toggle[data-feature=#{ another }]", @panel).removeClass('active')
 
     return
 
   update: (selector = 'body') ->
-    element = $(selector)
+    element = @$(selector)
 
     settings = @combine()
     element.css
