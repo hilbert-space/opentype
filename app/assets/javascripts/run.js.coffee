@@ -32,12 +32,11 @@ class TypeWorks
     { slug: 'ss01', title: 'Stylistic set 1' },
     { slug: 'ss02', title: 'Stylistic set 2' },
     { slug: 'ss03', title: 'Stylistic set 3' },
-    { slug: 'ss04', title: 'Stylistic set 4' },
-    { slug: 'ss05', title: 'Stylistic set 5' }
+    { slug: 'ss04', title: 'Stylistic set 4' }
   ]
 
   constructor: () ->
-    @panel = $('<div></div>').attr(id: 'typeworks')
+    @panel = $('<div></div>').attr(id: 'type-works')
 
     @features = {}
 
