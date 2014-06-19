@@ -38,9 +38,13 @@ class TypeWorks
   constructor: () ->
     return unless @$ = window.jQuery
 
-    @panel = @$('<div></div>').attr(id: 'type-works')
-
     @features = {}
+    @activeFeatures = []
+
+    @target = @$('body')
+    @target.addClass('type-works-target')
+
+    @panel = @$('<div></div>').attr(id: 'type-works-panel')
 
     for feature in TypeWorks.features
       @features[feature.slug] = feature
@@ -57,14 +61,16 @@ class TypeWorks
       false
 
     @panel.appendTo(document.body)
-    @activeFeatures = []
 
-  destroy: () ->
-    @activeFeatures = []
+    @style = @$('<style></style>')
+    @style.appendTo(document.head)
+
     @update()
 
+  destroy: () ->
+    @target.removeClass('type-works-target')
     @panel.remove()
-    delete @panel
+    @style.remove()
 
     return
 
@@ -93,16 +99,17 @@ class TypeWorks
 
     return
 
-  update: (selector = 'body') ->
-    element = @$(selector)
-
-    settings = @combine()
-    element.css
-      '-moz-font-feature-settings': settings
-      '-ms-font-feature-settings': settings
-      '-o-font-feature-settings': settings
-      '-webkit-font-feature-settings': settings
-      'font-feature-settings': settings
+  update: () ->
+    settings = "#{ @combine() } !important"
+    @style.text """
+      * {
+        -moz-font-feature-settings: #{ settings };
+        -ms-font-feature-settings: #{ settings };
+        -o-font-feature-settings: #{ settings };
+        -webkit-font-feature-settings: #{ settings };
+        font-feature-settings: #{ settings };
+      }
+      """
 
     return
 
@@ -113,7 +120,7 @@ class TypeWorks
       line += ',' if line.length
       line += '"' + feature + '" 1'
 
-    line
+    if line.length then line else 'normal'
 
 window.initializeTypeWorks = ->
   window.typeWorks = new TypeWorks()
