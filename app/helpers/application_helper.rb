@@ -33,7 +33,11 @@ module ApplicationHelper
   end
 
   def run_url(extension)
-    "//#{ server_address }/run.#{ extension }"
+    "//#{ host }/run.#{ extension }"
+  end
+
+  def host
+    request.host || 'type.works'
   end
 
   def compress(code)
