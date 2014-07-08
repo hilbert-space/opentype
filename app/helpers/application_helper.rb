@@ -14,8 +14,8 @@ module ApplicationHelper
   def bookmark_js
     <<-CODE
 (function(document) {
-  if (window.toggleTypeWorks) {
-    window.toggleTypeWorks();
+  if (window.toggleOpenType) {
+    window.toggleOpenType();
     return;
   }
 
@@ -37,7 +37,7 @@ module ApplicationHelper
   end
 
   def host
-    request.host || 'type.works'
+    request.host || 'open.type.works'
   end
 
   def compress(code)

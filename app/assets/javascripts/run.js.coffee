@@ -1,4 +1,4 @@
-class TypeWorks
+class OpenType
   # Reference:
   # http://www.microsoft.com/typography/otspec/featuretags.htm
   @features = [
@@ -42,11 +42,11 @@ class TypeWorks
     @activeFeatures = []
 
     @target = @$('body')
-    @target.addClass('type-works-target')
+    @target.addClass('opentype-target')
 
-    @panel = @$('<div></div>').attr(id: 'type-works-panel')
+    @panel = @$('<div></div>').attr(id: 'opentype-panel')
 
-    for feature in TypeWorks.features
+    for feature in OpenType.features
       @features[feature.slug] = feature
 
       @$("<a><span>#{ feature.title }</span></a>").
@@ -68,7 +68,7 @@ class TypeWorks
     @update()
 
   destroy: () ->
-    @target.removeClass('type-works-target')
+    @target.removeClass('opentype-target')
     @panel.remove()
     @style.remove()
 
@@ -122,35 +122,35 @@ class TypeWorks
 
     if line.length then line else 'normal'
 
-window.initializeTypeWorks = ->
-  window.typeWorks = new TypeWorks()
+window.initializeOpenType = ->
+  window.openType = new OpenType()
   return
 
-window.deinitializeTypeWorks = ->
-  window.typeWorks.destroy()
-  delete window.typeWorks
+window.deinitializeOpenType = ->
+  window.openType.destroy()
+  delete window.openType
   return
 
-window.toggleTypeWorks = ->
-  if window.typeWorks
-    window.deinitializeTypeWorks()
+window.toggleOpenType = ->
+  if window.openType
+    window.deinitializeOpenType()
   else
-    window.initializeTypeWorks()
+    window.initializeOpenType()
   return
 
 if window.jQuery
-  window.initializeTypeWorks()
+  window.initializeOpenType()
 else
   script = document.createElement('script')
 
   if script.readyState
     script.onreadystatechange = ->
       return unless @readyState == 'complete' || @readyState == 'loaded'
-      window.initializeTypeWorks()
+      window.initializeOpenType()
       return
   else
     script.onload = ->
-      window.initializeTypeWorks()
+      window.initializeOpenType()
       return
 
   script.setAttribute('src', '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
