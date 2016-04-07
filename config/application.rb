@@ -1,7 +1,7 @@
 require 'bundler'
 Bundler.require(:default)
 
-module TypeWorks
+module TypeExpert
   class Application < Rail::Application
     config.precompile << 'application.css'
     config.precompile << 'index.html'

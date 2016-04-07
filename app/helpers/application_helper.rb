@@ -37,7 +37,7 @@ module ApplicationHelper
   end
 
   def host
-    request.host || 'open.type.works'
+    request.host || 'open.type.expert'
   end
 
   def compress(code)

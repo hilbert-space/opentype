@@ -1,3 +1,3 @@
 require_relative 'config/application'
 
-run TypeWorks::Application.new
+run TypeExpert::Application.new

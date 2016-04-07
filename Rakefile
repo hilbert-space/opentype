@@ -1,3 +1,3 @@
 require_relative 'config/application'
 
-TypeWorks::Application.load_tasks
+TypeExpert::Application.load_tasks
