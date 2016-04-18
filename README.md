@@ -1,4 +1,4 @@
-# OpenType Expert
+# OpenType
 
 The repository contains the source code of [this][address] page.
 
