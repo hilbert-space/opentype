@@ -1,6 +1,6 @@
 # OpenType
 
-The repository contains the source code of [this][address] page.
+The repository contains the source code of [this][1] page.
 
 ## Contributing
 
@@ -8,4 +8,4 @@ The repository contains the source code of [this][address] page.
 2. Implement your idea.
 3. Open a pull request.
 
-[address]: https://open.type.expert
+[1]: https://ivanukhov.github.io/opentype
