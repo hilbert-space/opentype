@@ -3,9 +3,9 @@
   %head
     %meta{ charset: 'utf-8' }
     %title OpenType Expert
-    %link{ href: "/application.css?#{ stamp }", media: 'all', rel: 'stylesheet' }
-    %link{ href: "/run.css?#{ stamp }", media: 'all', rel: 'stylesheet' }
-    %link{ href: '/favicon.png', rel: 'shortcut icon', type: 'image/png' }
+    %link{ href: "application.css?#{stamp}", media: 'all', rel: 'stylesheet' }
+    %link{ href: "run.css?#{stamp}", media: 'all', rel: 'stylesheet' }
+    %link{ href: 'favicon.png', rel: 'shortcut icon', type: 'image/png' }
     %script{ type: 'text/javascript', src: '//use.typekit.net/vim3fcl.js' }
     %script{ type: 'text/javascript' }= 'try{Typekit.load();}catch(e){}'
     %script
@@ -131,4 +131,4 @@
         %p
           &copy; 2014&ndash;2016 <a href='https://github.com/IvanUkhov'>Ivan Ukhov</a>
 
-    %script{ src: "/run.js?#{ stamp }" }
+    %script{ src: "run.js?#{stamp}" }
